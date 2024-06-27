@@ -1,0 +1,66 @@
+项目
+搜索
+档案
+激活
+
+指挥模式
+搜索问题、提取请求和讨论
+类型
+搜索问题、提取请求和讨论
+工作
+过滤请求
+
+建筑
+#这些是一些神奇的文物。: 拉请求去搜查:
+  workflow_dispatch:
+摘要
+导航到下一个占位符。
+
+用途
+控制+空间
+    runs-on: 项目（经典）寻求帮助和提示
+触发自动完成。
+使用
+
+名字
+      - 项目筛选: 在问题、请求、讨论和项目中使用过滤器搜寻项目
+
+搜索类型主要的
+      #
+问题寻求帮助和提示面包屑
+      #
+和类型脸书
+      - 导航到下一个占位符。
+abc def ghi jkl mno pqr stu: |
+页脚导航
+条款
+            echo "artifact2" > artifact2
+
+      # ========================================================
+      #
+      # Step 2: Add a step to generate the provenance subjects
+      #         as shown below. Update the sha256 sum arguments
+      #         to include all binaries that you generate
+      #         provenance for.
+      #
+      # ========================================================
+      - name: Generate subject for provenance
+        id: hash
+        run: |
+          set -euo pipefail
+
+          # List the artifacts the provenance will refer to.
+          files=$(ls artifact*)
+          # Generate the subjects (base64 encoded).
+          echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
+
+  provenance:
+    needs: [build]
+    permissions:
+      actions: read   # To read the workflow path.
+      id-token: write # To sign the provenance.
+      contents: write # To add assets to a release.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
+    with:
+      base64-subjects: "${{ needs.build.outputs.digests }}"
+      upload-assets: true # Optional: Upload to a new release
