@@ -2,7 +2,11 @@
 <h2>请 Ctrl+D 收藏本页到浏览器收藏夹</h2>
 
 
-UU视频：<a href="https://www3.dksp.xyz/">点击这里</a>
+UU视频：<a href="https://www3.dksp.xyz/">
+    <img src="你的图片地址"https://www3.dksp.xyz/">
+    <img class=" long-press-able-img " src="https://d25n4aqvqe3nqv.cloudfront.net/ad-img/gif/2024-05-30-08.GIF" alt="UU视频">
+</a>
+
 
 BB视频：<a href="https://www5.dksp.xyz">点击这里</a>
 
